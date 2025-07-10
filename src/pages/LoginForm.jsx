@@ -16,7 +16,7 @@ const Login = () => {
             setToken(data.access_token);
             setIsSuccess(true);
             setTimeout(() => {
-                navigate('/admin'); // chuyển sang trang admin
+                navigate('/admin/users'); // chuyển sang trang admin
             }, 1000);
         } catch (error) {
             setIsSuccess(false);

@@ -166,6 +166,7 @@ export default function UserTable({ users }) {
             rowKey="id"
             pagination={{ pageSize: 10 }}
             scroll={{ x: 'max-content' }}
+            bordered
         />
     );
 }

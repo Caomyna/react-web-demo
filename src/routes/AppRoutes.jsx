@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from '../pages/LoginForm';
 import AdminLayout from '../pages/AdminLayout';
-import Users from '../pages/Users';
+import Users from '../pages/UsersPage';
 import PrivateRoute from './PrivateRoute';
 
 export default function AppRoutes() {
