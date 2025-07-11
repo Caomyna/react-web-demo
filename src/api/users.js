@@ -11,7 +11,16 @@ instance.interceptors.request.use((config) => {
     return config;
 });
 
+//lấy danh sách users
 export const fetchUsers = () => instance.get("/users");
 
+// Xoá người dùng
+export const deleteUser = (id) => instance.delete(`/users/${id}`);
+
+// Thêm người dùng
+export const createUser = (data) => instance.post("/users", data);
+
+// Sửa người dùng
+export const updateUser = (id, data) => instance.put(`/users/${id}`, data);
 
 // https://fakeapi.platzi.com/api/v1

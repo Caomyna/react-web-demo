@@ -9,19 +9,7 @@ import {
     MailOutlined
 } from '@ant-design/icons';
 
-export default function UserTable({ users }) {
-    const handleDelete = (id) => {
-        console.log('Xoá user', id);
-    };
-
-    const handleEdit = (id) => {
-        console.log('Sửa user', id);
-    };
-
-    const handleChangePassword = (id) => {
-        console.log('Đổi mật khẩu', id);
-    };
-
+export default function UserTable({ users, onDelete, onEdit }) {
     const columns = [
         {
             title: '#',
@@ -44,23 +32,23 @@ export default function UserTable({ users }) {
                 </>
             ),
         },
-        {
-            title: 'Loại tài khoản',
-            dataIndex: 'accountType',
-            key: 'accountType',
-            render: (type) => <Tag color="blue">{type}</Tag>,
-        },
-        {
-            title: 'Cấp',
-            dataIndex: 'level',
-            key: 'level',
-            render: (cap) => {
-                let color = 'blue';
-                if (cap === 'Cấp 2') color = 'orange';
-                else if (cap === 'Cấp 3') color = 'red';
-                return <Tag color={color}>{cap}</Tag>;
-            },
-        },
+        // {
+        //     title: 'Loại tài khoản',
+        //     dataIndex: 'accountType',
+        //     key: 'accountType',
+        //     render: (type) => <Tag color="blue">{type}</Tag>
+        // },
+        // {
+        //     title: 'Cấp',
+        //     dataIndex: 'level',
+        //     key: 'level',
+        //     render: (cap) => {
+        //         let color = 'blue';
+        //         if (cap === 'Cấp 2') color = 'orange';
+        //         else if (cap === 'Cấp 3') color = 'red';
+        //         return <Tag color={color}>{cap}</Tag>;
+        //     },
+        // },
         {
             title: 'Email',
             dataIndex: 'email',
@@ -114,18 +102,18 @@ export default function UserTable({ users }) {
         },
 
         {
-            title: 'Hành động',
+            title: '',
             key: 'actions',
             render: (_, record) => (
                 <Space>
                     <Tooltip title="Sửa">
-                        <Button icon={<EditOutlined />} onClick={() => handleEdit(record.id)} />
+                        <Button icon={<EditOutlined />} onClick={() => onEdit(record)} />
                     </Tooltip>
-                    <Tooltip title="Xem">
-                        <Button icon={<KeyOutlined />} onClick={() => handleChangePassword(record.id)} />
+                    <Tooltip title="Đổi mật khẩu">
+                        <Button icon={<KeyOutlined />} />
                     </Tooltip>
                     <Tooltip title="Xoá">
-                        <Popconfirm title="Xoá user này?" onConfirm={() => handleDelete(record.id)}>
+                        <Popconfirm title="Xoá user này?" onConfirm={() => onDelete(record)}>
                             <Button danger icon={<DeleteOutlined />} />
                         </Popconfirm>
                     </Tooltip>
@@ -135,36 +123,36 @@ export default function UserTable({ users }) {
     ];
 
     // Dữ liệu mẫu 
-    const data = [
-        {
-            stt: '1',
-            id: '68719',
-            name: 'THAO LINH',
-            accountType: 'Học sinh',
-            level: 'Cấp 2',
-            email: 'banme87@gmail.com',
-            phone: '0967102244',
-            createdAt: '08/07/2025 17:43',
-        },
-        {
-            stt: '2',
-            id: '68718',
-            name: 'AN THUYEN',
-            accountType: 'Học sinh',
-            level: 'Cấp 3',
-            email: 'lenguyenanthuyen2009@gmail.com',
-            phone: '088887877777',
-            createdAt: '08/07/2025 17:15',
-        },
-        // Thêm các user còn lại...
-    ];
+    // const data = [
+    //     {
+    //         stt: '1',
+    //         id: '68719',
+    //         name: 'THAO LINH',
+    //         accountType: 'Học sinh',
+    //         level: 'Cấp 2',
+    //         email: 'banme87@gmail.com',
+    //         phone: '0967102244',
+    //         createdAt: '08/07/2025 17:43',
+    //     },
+    //     {
+    //         stt: '2',
+    //         id: '68718',
+    //         name: 'AN THUYEN',
+    //         accountType: 'Học sinh',
+    //         level: 'Cấp 3',
+    //         email: 'lenguyenanthuyen2009@gmail.com',
+    //         phone: '088887877777',
+    //         createdAt: '08/07/2025 17:15',
+    //     },
+
+    // ];
 
     return (
         <Table
             columns={columns}
             dataSource={users}
             rowKey="id"
-            pagination={{ pageSize: 10 }}
+            pagination={{ pageSize: 30 }}
             scroll={{ x: 'max-content' }}
             bordered
         />
